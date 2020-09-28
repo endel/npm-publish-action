@@ -16,7 +16,7 @@ async function main() {
   const eventObj = await readJson(eventFile);
 
   const commitPattern =
-    getEnv("COMMIT_PATTERN") || "^(?:Release|Version) (\\S+)";
+    getEnv("COMMIT_PATTERN") || new RegExp("^(?:Release|Version) (\\S+)", "i");
 
   const { name, email } = eventObj.repository.owner;
 
