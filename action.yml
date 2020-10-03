@@ -16,6 +16,14 @@ inputs:
     description: Custom workspace directory that contains the package.json file.
     required: false
 
+outputs:
+  tag_name:
+      description: "The tag name used for the new version"
+  is_tagged_release:
+      description: "Boolean if a tagged version has been used"
+  has_published:
+      description: "Boolean if NPM package has been published successfully"
+
 runs:
   using: docker
   image: Dockerfile

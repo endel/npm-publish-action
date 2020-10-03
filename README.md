@@ -46,6 +46,12 @@ These inputs are optional: that means that if you don't enter them, default valu
 - `commit_pattern`: pattern that the commit message needs to follow
 - `workspace`: custom workspace directory that contains the `package.json` file
 
+### Outputs
+
+- `tag_name`: The tag name used for the new version
+- `is_tagged_release`: Boolean if a tagged version has been used
+- `has_published`: Boolean if NPM package has been published successfully
+
 ### Environment variables
 
 - `GITHUB_TOKEN`: this is a token that GitHub generates automatically, you only need to pass it to the action as in the example

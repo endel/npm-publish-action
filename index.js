@@ -4,6 +4,7 @@ const process = require("process");
 const { join } = require("path");
 const { spawn } = require("child_process");
 const { readFile } = require("fs");
+const core = require('@actions/core');
 
 async function main() {
   const dir =
@@ -106,6 +107,8 @@ async function createTag(dir, config, version) {
     e instanceof ExitError && e.code === 1 ? false : Promise.reject(e)
   );
 
+  core.setOutput('tag_name', tagName);
+
   if (tagExists) {
     console.log(`Tag already exists: ${tagName}`);
     throw new NeutralExitError();
@@ -136,6 +139,9 @@ async function publishPackage(dir, config, version) {
   if (tagName) { args.push('--tag', tagName[1]); }
 
   await run(...args);
+
+  core.setOutput('has_published', true);
+  core.setOutput('is_tagged_release', (tagName) ? true : false);
 
   console.log("Version has been published successfully:", version);
 }
